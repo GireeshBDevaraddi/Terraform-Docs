@@ -1,7 +1,7 @@
 Source - https://developer.hashicorp.com/terraform/tutorials/state
 
 # Import Terraform configuration
-    - Terraform stores information about your infrastructure in a state file. To update your infrastructure, you first modify your configuration, and then use Terraform to plan and apply the required changes. Terraform uses the data in your state file to determine the changes it needs to make to your infrastructure.
+- Terraform stores information about your infrastructure in a state file. To update your infrastructure, you first modify your configuration, and then use Terraform to plan and apply the required changes. Terraform uses the data in your state file to determine the changes it needs to make to your infrastructure.
     - Use terraform plan with the -generate-config-out flag to generate configuration for the container you will import. Terraform builds a plan and outputs the generated configuration for the container to the specified file.
 
 # Migrate state to Terraform Cloud
