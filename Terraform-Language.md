@@ -504,7 +504,7 @@ ex:
   - If a particular provider already has a selection recorded in the lock file, Terraform will always re-select that version for installation, even if a newer version has become available. You can override that behavior by adding the -upgrade option when you run terraform init, in which case Terraform will disregard the existing selections and once again select the newest available version matching the version constraint.
 
 # VARIABLES & OUTPUTS
-- Input Variables : 
+## Input Variables : 
   - serve as parameters for a Terraform module, so users can customize behavior without editing the source.
   - Input variables let you customize aspects of Terraform modules without altering the module's own source code. This functionality allows you to share modules across different Terraform configurations, making your module composable and reusable
   - Input variables are like function arguments
@@ -553,10 +553,10 @@ ex:
     5. Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
   - Within Terraform test files, you can specify variable values within variables blocks, either nested within run blocks or defined directly within the file. Variables defined in this way take precedence over all other mechanisms during test execution, with variables defined within run blocks taking precedence over those defined within the file
 
-- Output Values :  are like return values for a Terraform module.
+## Output Values :  are like return values for a Terraform module.
   - Output values are like function return values.
   - 
-- Local Values : are a convenience feature for assigning a short name to an expression
+## Local Values : are a convenience feature for assigning a short name to an expression
         - Local values are like a function's temporary local variables.
 
 
