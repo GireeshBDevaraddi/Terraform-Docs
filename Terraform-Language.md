@@ -504,7 +504,7 @@ ex:
   - If a particular provider already has a selection recorded in the lock file, Terraform will always re-select that version for installation, even if a newer version has become available. You can override that behavior by adding the -upgrade option when you run terraform init, in which case Terraform will disregard the existing selections and once again select the newest available version matching the version constraint.
 
 # VARIABLES & OUTPUTS
-## Input Variables : 
+## Input Variables 
   - serve as parameters for a Terraform module, so users can customize behavior without editing the source.
   - Input variables let you customize aspects of Terraform modules without altering the module's own source code. This functionality allows you to share modules across different Terraform configurations, making your module composable and reusable
   - Input variables are like function arguments
@@ -551,14 +551,49 @@ ex:
     3. The terraform.tfvars.json file, if present.
     4. Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
     5. Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
-  - Within Terraform test files, you can specify variable values within variables blocks, either nested within run blocks or defined directly within the file. Variables defined in this way take precedence over all other mechanisms during test execution, with variables defined within run blocks taking precedence over those defined within the file
+  - Within Terraform test files, you can specify variable values within variable blocks, either nested within run blocks or defined directly within the file. Variables defined in this way take precedence over all other mechanisms during test execution, with variables defined within run blocks taking precedence over those defined within the file
 
-## Output Values :  
+## Output Variables   
   - Output values are like function return values or return values for a Terraform module.
-  - 
-## Local Values : 
-  - Local values are like a function's temporary local variables, convenience feature for assigning a short name to an expression.
-  - 
+  - Output values make information about your infrastructure available on the command line, and can expose information for other Terraform configurations to use. Output values are similar to return values in programming languages.
+  - Output values have several uses:
+    1. A child module can use outputs to expose a subset of its resource attributes to a parent module.
+    2. A root module can use outputs to print certain values in the CLI output after running `terraform apply`.
+    3. When using a remote state, root module outputs can be accessed by other configurations via a terraform_remote_state data source.
+  - Resource instances managed by Terraform each export attribute whose values can be used elsewhere in configuration. Output values are a way to expose some of that information to the user of your module
+  - Each output value exported by a module must be declared using an `output` block
+    ```
+    output "instance_ip_addr" {
+      value = aws_instance.server.private_ip
+    }
+    ```
+  - The `value` argument takes an expression whose result is to be returned to the user.
+  - Outputs are only rendered when Terraform applies your plan. Running `terraform plan` will not render outputs
+  - In a parent module, outputs of child modules are available in expressions as `module.<MODULE NAME>.<OUTPUT NAME>`
+  - You can use `precondition` blocks to specify guarantees about output data
+  - `output` blocks can optionally include `description`, `sensitive`, and `depends_on` arguments
+
+## Local Variables  
+- Local values are like a function's temporary local variables, a convenience feature for assigning a short name to an expression.
+- A local value assigns a name to an expression, so you can use the name multiple times within a module instead of repeating the expression
+- A set of related local values can be declared together in a single locals block
+```
+locals {
+  service_name = "forum"
+  owner        = "Community Team"
+}
+```
+- The expressions in local values are not limited to literal constants; they can also reference other values in the module in order to transform or combine them, including variables, resource attributes, or other local values
+```
+locals {
+  # Ids for multiple sets of EC2 instances, merged together
+  instance_ids = concat(aws_instance.blue.*.id, aws_instance.green.*.id)
+}
+```
+- Once a local value is declared, you can reference it in expressions as `local.<NAME>`
+- Local values can be helpful to avoid repeating the same values or expressions multiple times in a configuration, but if overused they can also make a configuration hard to read by future maintainers by hiding the actual values used
+
+
 
 
 
