@@ -553,11 +553,12 @@ ex:
     5. Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
   - Within Terraform test files, you can specify variable values within variables blocks, either nested within run blocks or defined directly within the file. Variables defined in this way take precedence over all other mechanisms during test execution, with variables defined within run blocks taking precedence over those defined within the file
 
-## Output Values :  are like return values for a Terraform module.
-  - Output values are like function return values.
+## Output Values :  
+  - Output values are like function return values or return values for a Terraform module.
   - 
-## Local Values : are a convenience feature for assigning a short name to an expression
-        - Local values are like a function's temporary local variables.
+## Local Values : 
+  - Local values are like a function's temporary local variables, convenience feature for assigning a short name to an expression.
+  - 
 
 
 
