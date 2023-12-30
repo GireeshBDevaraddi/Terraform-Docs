@@ -1,4 +1,4 @@
-#CHECKS
+# CHECKS
 - The `check` block can validate your infrastructure outside the usual resource lifecycle. `check` blocks address a gap between post-apply and functional validation of infrastructure
 - `check` blocks allow you to define `custom conditions` that execute on every Terraform plan or apply operation without affecting the overall status of an operation. `dheck` blocks execute as the last step of a plan or apply after Terraform has planned or provisioned your infrastructure
 ## Syntax
