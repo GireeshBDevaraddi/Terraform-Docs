@@ -190,7 +190,7 @@ variable "with_optional_attribute" {
 - The following operators are valid:
     1. = (or no operator): Allows only one exact version number. Cannot be combined with other conditions.
     2. !=: Excludes an exact version number.
-    3. >, >=, <, <=: Comparisons against a specified version, allowing versions for which the comparison is true. "Greater-than" requests newer versions, and "less-than" requests older versions.
+    3. \>, >=, <, <=: Comparisons against a specified version, allowing versions for which the comparison is true. "Greater-than" requests newer versions, and "less-than" requests older versions.
     4. ~>: Allows only the rightmost version component to increment. This format is referred to as the pessimistic constraint operator. For example, to allow new patch releases within a specific minor release, use the full version number:
         ~> 1.0.4: Allows Terraform to install 1.0.5 and 1.0.10 but not 1.1.0.
         ~> 1.1: Allows Terraform to install 1.2 and 1.10 but not 2.0.
