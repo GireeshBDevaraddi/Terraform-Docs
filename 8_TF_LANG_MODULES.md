@@ -1,3 +1,4 @@
+# MODULES
 - Modules are containers for multiple resources that are used together. A module consists of a collection of .tf and/or .tf.json files kept together in a directory.
 - Modules are the main way to package and reuse resource configurations with Terraform.
 - Every Terraform configuration has at least one module, known as its root module, which consists of the resources defined in the .tf files in the main working directory.
